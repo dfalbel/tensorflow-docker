@@ -18,6 +18,11 @@ RUN Rscript -e 'reticulate::py_install(c("tensorflow==2.0.0rc0", "tensorflow-pro
 RUN Rscript -e 'reticulate::py_install(c("tensorflow", "tensorflow-probability"), envname = "/home/rstudio/.virtualenvs/tf-stable")'
 
 # workaround to install gast==0.2.2.
+
+RUN Rscript -e 'reticulate::virtualenv_remove(packages = "gast", envname = "/home/rstudio/.virtualenvs/tf-nightly")'
+RUN Rscript -e 'reticulate::virtualenv_remove(packages = "gast", envname = "/home/rstudio/.virtualenvs/tf-2")'
+RUN Rscript -e 'reticulate::virtualenv_remove(packages = "gast", envname = "/home/rstudio/.virtualenvs/tf-stable")'
+
 RUN Rscript -e 'reticulate::py_install("gast==0.2.2", envname = "/home/rstudio/.virtualenvs/tf-nightly")'
 RUN Rscript -e 'reticulate::py_install("gast==0.2.2", envname = "/home/rstudio/.virtualenvs/tf-2")'
 RUN Rscript -e 'reticulate::py_install("gast==0.2.2", envname = "/home/rstudio/.virtualenvs/tf-stable")'
